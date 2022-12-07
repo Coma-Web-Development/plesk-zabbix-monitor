@@ -21,18 +21,20 @@ testRequirements()
 
 	echo "Checking if some config file with same name exist..."
 	for zabbix_config in $zabbix_conf_dir $zabbix_conf2_dir
-	if [ -f ${zabbix_config}/${zabbix_conf_file} ]
-	then
-		if echo $0 | egrep -iq "install"
+	do
+		if [ -f ${zabbix_config}/${zabbix_conf_file} ]
 		then
-			echo "The file >>> ${zabbix_conf_dir}/${zabbix_conf_file} <<< already exist. I do not want to break anything.."
-			echo "If you are trying to update the script, please execute update.sh file"
-			echo "Aborting..."
-			exit 2
-		else
-			echo "The zabbix config file >>> ${zabbix_conf_dir}/${zabbix_conf_file} <<< does not exist. OK."
+			if echo $0 | egrep -iq "install"
+			then
+				echo "The file >>> ${zabbix_conf_dir}/${zabbix_conf_file} <<< already exist. I do not want to break anything.."
+				echo "If you are trying to update the script, please execute update.sh file"
+				echo "Aborting..."
+				exit 2
+			else
+				echo "The zabbix config file >>> ${zabbix_conf_dir}/${zabbix_conf_file} <<< does not exist. OK."
+			fi
 		fi
-	fi
+	done
 
 	echo "Checking if zabbix scripts directory exist..."
 	if [ ! -d $zabbix_scripts_dir ]
