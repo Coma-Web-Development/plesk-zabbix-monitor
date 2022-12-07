@@ -59,7 +59,7 @@ testRequirements()
 
 copyFiles()
 {
-	echo "Copything the files..."
+	echo "Copying the files..."
 	cp scripts/* $zabbix_scripts_dir
 
 	if [ -d $zabbix_conf_dir ]
