@@ -1,5 +1,6 @@
 #!/usr/bin/python3.8
 import os
+import json
 
 vhosts_dir="/var/www/vhosts/system/"
 vhosts=os.listdir(vhosts_dir)
@@ -12,4 +13,4 @@ for vhost in vhosts:
 	for suffix in aux_suffix:
 		data["data"].append(aux_prefix+vhost+suffix)
 
-print(data)
+print(json.dumps(data))
