@@ -11,6 +11,6 @@ data={ "data" : []}
 aux_count=0
 for vhost in vhosts:
 	for suffix in aux_suffix:
-		data["data"].append({"domain" : vhost, "log" : aux_prefix+vhost+suffix)
+		data["data"].append({"domain" : vhost, "log" : aux_prefix+vhost+suffix})
 
 print(json.dumps(data))
