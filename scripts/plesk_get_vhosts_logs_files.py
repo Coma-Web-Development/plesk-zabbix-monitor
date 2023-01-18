@@ -13,7 +13,7 @@ else:
     vhosts=os.listdir(vhosts_dir)
 
 aux_prefix=vhosts_dir
-aux_suffix=["/logs/proxy_access_ssl_log","/logs/proxy_access_log","/logs/access_log ","/logs/access_ssl_log"]
+aux_suffix=["/logs/proxy_access_ssl_log","/logs/proxy_access_log","/logs/access_log","/logs/access_ssl_log"]
 
 data = []
 
