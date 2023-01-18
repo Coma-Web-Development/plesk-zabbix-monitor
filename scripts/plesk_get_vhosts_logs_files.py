@@ -23,4 +23,5 @@ for vhost in vhosts:
         if os.path.exists(file_absolut_path):
             data.append({"{#HTTPDOMAIN}" : vhost, "{#HTTPLOGFILE}" : file_absolut_path})
 
-print(data)
+json_object = json.dumps(data, indent = 4)
+print(json_object)
