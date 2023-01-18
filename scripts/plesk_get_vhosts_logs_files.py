@@ -2,14 +2,24 @@
 import os
 import json
 
+hosts_file="/etc/plesk-zabbix-monitor"
 vhosts_dir="/var/www/vhosts/system/"
-vhosts=os.listdir(vhosts_dir)
+
+if os.path.exists(hosts_file):
+        file = open(hosts_file, 'r')
+        vhosts = file.readlines()
+else:
+        vhosts=os.listdir(vhosts_dir)
+
 aux_prefix=vhosts_dir
 aux_suffix=["/logs/proxy_access_ssl_log","/logs/proxy_access_log","/logs/access_log ","/logs/access_ssl_log"]
+
 data = []
 
-aux_count=0
 for vhost in vhosts:
-	for suffix in aux_suffix:
-		data.append({"{#HTTPDOMAIN}" : vhost, "{#HTTPLOGFILE}" : aux_prefix+vhost+suffix})
+    for suffix in aux_suffix:
+        file_absolut_path=''.join([aux_prefix,vhost.strip('\n'),suffix])
+        if os.path.exists(file_absolut_path):
+            data.append({"{#HTTPDOMAIN}" : vhost, "{#HTTPLOGFILE}" : file_absolut_path})
+
 print(data)
