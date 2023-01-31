@@ -1,0 +1,157 @@
+zabbix_export:
+  version: '5.4'
+  date: '2023-01-31T04:48:52Z'
+  groups:
+    -
+      uuid: dc579cd7a1a34222933f24f52a68bcd8
+      name: 'Linux servers'
+  templates:
+    -
+      uuid: 70a32840282e41768338ac412789d432
+      template: plesk-zabbix-monitor
+      name: plesk-zabbix-monitor
+      groups:
+        -
+          name: 'Linux servers'
+      discovery_rules:
+        -
+          uuid: 4b309140eefa45e9beb58bf9fb51fc65
+          name: 'Discovery http server logs'
+          key: discover.plesk-vhosts-logs
+          delay: 1h
+          item_prototypes:
+            -
+              uuid: a5cad2c08b7447d6a1e2850f2ea3e322
+              name: 'Error 400 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (400|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 365ee57472cf49df9eb72776f0ae5df5
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (400|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 400 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 3fd08166bf0f4c55be05407b82d1cce2
+              name: 'Error 401 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (401|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 1afce4cf0e9f43fdba4ec84cdf3c00f4
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (401|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 401 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: c7573019f2c34b7da1cf0bbeef50ad68
+              name: 'Error 403 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (403|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: f83e001764ec4addac1130f85feeaee8
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (403|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 403 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 0a3f759267334bc5b8057f27f7f96146
+              name: 'Error 408 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (408|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: b0aad4125c9e4343bcba5c15e0bc53f0
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (408|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 408 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 3a6eae0af1c34272a606ef36a308366c
+              name: 'Error 429 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (429|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: f35570a9ea154730b1f1cd51f839ff72
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (429|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 429 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 01db655aab05420a8ca5cd15ab71ecbe
+              name: 'Error 500 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (500|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 064ffa61b59f413ea89c3f5440151fae
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (500|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 500 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 45a08bea8570425799be6c04bfc06a89
+              name: 'Error 502 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (502|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 59b1f00da962425aa6946971bcc8a763
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (502|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 502 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: ccb68ac0914148429412af96892791e3
+              name: 'Error 503 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (503|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 07cfa300b69644708fe13ef5d43485fb
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (503|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 503 {#HTTPDOMAIN}'
+                  priority: HIGH
+            -
+              uuid: 005b1492d1f2422f9293a721aa9e854e
+              name: 'Error 504 {#HTTPLOGFILE} {#HTTPDOMAIN}'
+              type: ZABBIX_ACTIVE
+              key: 'log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (504|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]'
+              delay: 1s
+              history: 1d
+              trends: '0'
+              value_type: LOG
+              trigger_prototypes:
+                -
+                  uuid: 6c79baf81752461987a90c74cd6455d9
+                  expression: 'bytelength(last(/plesk-zabbix-monitor/log[{#HTTPLOGFILE},"^(\S+) (\S+) (\S+) \[([\w:\/]+\s[+\-]\d{4})\] \"(\S+)\s?(\S+)?\s?(\S+)?\" (504|-) (\d+|-)\s?\"?([^\"]*)\"?\s?\"?([^\"]*)\"?\s",,,,\6,]))>0'
+                  name: 'Error 504 {#HTTPDOMAIN}'
+                  priority: HIGH
